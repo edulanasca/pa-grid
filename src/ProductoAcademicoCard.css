@@ -1,0 +1,25 @@
+.card {
+    height: 170px;
+    width: 250px;
+    border-radius: var(--prod-acad-card-radius);
+    text-align: center;
+    background-color: white;
+}
+
+.card__header {
+    border-top-left-radius: var(--prod-acad-card-radius);
+    border-top-right-radius: var(--prod-acad-card-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #006EDD;
+    color: white;
+}
+
+.card__header p {
+    flex: 1;
+}
+
+.card p {
+
+}

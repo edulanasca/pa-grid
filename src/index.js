@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ProductoAcademicoGrid from "./ProductoAcademicoGrid";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ProductoAcademicoGrid />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,19 @@
+:root {
+    --button-add-size: 65px;
+    --prod-acad-card-radius: 15px;
+}
+
+.row__add {
+    width: var(--button-add-size);
+    height: var(--button-add-size);
+    margin-left: 28px;
+    border-radius: 100%;
+    border: 1px solid #006EDD;
+    background-color: transparent;
+    color: #006EDD;
+}
+
+.row__add:hover {
+    background-color: #006EDD;
+    color: white;
+}
