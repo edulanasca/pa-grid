@@ -1,33 +1,37 @@
-import ProductoAcademicoNota from "./ProductoAcademicoNota";
-import ProductoAcademicoCard from "./ProductoAcademicoCard";
-import "./ProductoAcademicoRow.css";
+import ProductoAcademicoNota from './ProductoAcademicoNota';
+import ProductoAcademicoCard from './ProductoAcademicoCard';
+import './ProductoAcademicoRow.css';
 
 import AddIcon from '@mui/icons-material/Add';
+import { useContext } from 'react';
+import { ProductoAcademicoContext } from './store/productoAcademico/productoAcademicoContext';
+import { types } from './types/types';
 
-const ProductoAcademicoRow = ({index, dispatch, id, porcentaje, productos}) => {
+const ProductoAcademicoRow = productoAcademico => {
+	const { dispatch } = useContext(ProductoAcademicoContext);
+	const { index, id, porcentaje, productos } = productoAcademico;
 
-    const handleAddProdAcad = () => dispatch({type: "addProdAcad", payload: index});
-    const handleNotaActions = {
-        handleRowUp: () => dispatch({type: "clickRowUp", payload: id}),
-        handleRowDown: () => dispatch({type: "clickRowDown", payload: id}),
-        handleDeleteRow: () => dispatch({type: "deleteRow", payload: id})
-    }
+	const handleAddProdAcad = () => {
+		dispatch({ type: types.addProdAcad, payload: index });
+	};
 
-    return (
-        <div className="row">
-            <ProductoAcademicoNota index={index} porcentaje={porcentaje} {...handleNotaActions}/>
-            {
-                productos.map(producto =>
-                    <ProductoAcademicoCard
-                    key={producto.id}
-                    {...producto}
-                    />)
-            }
-            <button className="producto__add" onClick={handleAddProdAcad}>
-                <AddIcon/>
-            </button>
-        </div>
-    );
-}
+	return (
+		<div className="row">
+			<ProductoAcademicoNota
+				index={index}
+				porcentaje={porcentaje}
+				id={id}
+			/>
+
+			{productos.map(producto => (
+				<ProductoAcademicoCard key={producto.id} {...producto} />
+			))}
+
+			<button className="producto__add" onClick={handleAddProdAcad}>
+				<AddIcon />
+			</button>
+		</div>
+	);
+};
 
 export default ProductoAcademicoRow;

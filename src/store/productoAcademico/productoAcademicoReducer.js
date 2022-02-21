@@ -1,17 +1,24 @@
 import { types } from '../../types/types';
+import {
+	addProdAcad,
+	addRow,
+	deleteRow,
+	rowDown,
+	rowUp
+} from '../../actions/productoAcademicoActions';
 
 export const ProductoAcademicoReducer = (state = {}, action) => {
 	switch (action.type) {
 		case types.addRow:
-			return {};
+			return addRow([...state, action.payload]);
 		case types.deleteRow:
-			return {};
+			return deleteRow(state, action.payload);
 		case types.addProdAcad:
-			return {};
+			return addProdAcad(state, action.payload);
 		case types.rowUp:
-			return {};
+			return rowUp(state, action.payload);
 		case types.rowDown:
-			return {};
+			return rowDown(state, action.payload);
 
 		default:
 			return state;

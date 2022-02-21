@@ -33,8 +33,8 @@ export default function ProductoAcademicoDetalle({
 	open,
 	handleClose
 }) {
-	const competenciasContext = useContext(ProductoAcademicoContext);
-	const [competencias, setCompetencias] = useState([]);
+	const { competencias } = useContext(ProductoAcademicoContext);
+	const [competenciasss, setCompetencias] = useState([]);
 	const [expanded, setExpanded] = useState(false);
 
 	const handleChange = panel => (event, isExpanded) => {
@@ -63,7 +63,7 @@ export default function ProductoAcademicoDetalle({
 					<Typography variant="h3" align="left">
 						{nombre}
 					</Typography>
-					{competenciasContext.map(competencia => {
+					{competencias.map(competencia => {
 						return (
 							<Accordion
 								key={competencia.id}
@@ -85,7 +85,7 @@ export default function ProductoAcademicoDetalle({
 											<ToggleButtonGroup
 												key={especifica.id}
 												orientation="vertical"
-												value={competencias}
+												value={competenciasss}
 												onChange={handleCompetencia}
 												aria-label="competencia especifica"
 											>
