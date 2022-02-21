@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
-import reportWebVitals from './reportWebVitals';
-import ProductoAcademicoGrid from "./ProductoAcademicoGrid";
+
+import { competencias } from './data/competencias';
+
+import { ProductoAcademicoContext } from './store/productoAcademico/productoAcademicoContext';
+import ProductoAcademicoGrid from './ProductoAcademicoGrid';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ProductoAcademicoGrid />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<ProductoAcademicoContext.Provider value={competencias}>
+		<ProductoAcademicoGrid />
+	</ProductoAcademicoContext.Provider>,
+	document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
