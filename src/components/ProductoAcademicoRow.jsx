@@ -1,11 +1,15 @@
-import ProductoAcademicoNota from './ProductoAcademicoNota';
-import ProductoAcademicoCard from './ProductoAcademicoCard';
+import { useContext } from 'react';
+
+import { ProductoAcademicoContext } from '../context/productoAcademicoContext';
+
+import { types } from '../types/productoAcademicoTypes';
+
 import './ProductoAcademicoRow.css';
 
 import AddIcon from '@mui/icons-material/Add';
-import { useContext } from 'react';
-import { ProductoAcademicoContext } from './store/productoAcademico/productoAcademicoContext';
-import { types } from './types/types';
+
+import ProductoAcademicoCard from './ProductoAcademicoCard';
+import ProductoAcademicoNota from './ProductoAcademicoNota';
 
 const ProductoAcademicoRow = productoAcademico => {
 	const { dispatch } = useContext(ProductoAcademicoContext);

@@ -1,8 +1,11 @@
-import './ProductoAcademicoNota.css';
 import { useContext, useEffect, useState } from 'react';
+
+import { ProductoAcademicoContext } from '../context/productoAcademicoContext';
+
+import './ProductoAcademicoNota.css';
+
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
-import { ProductoAcademicoContext } from './store/productoAcademico/productoAcademicoContext';
 
 const ProductoAcademicoNota = ({ index, porcentaje, id }) => {
 	const { dispatch } = useContext(ProductoAcademicoContext);
@@ -19,11 +22,10 @@ const ProductoAcademicoNota = ({ index, porcentaje, id }) => {
 	const handleDeleteRow = () => dispatch({ type: 'deleteRow', payload: id });
 
 	function comprobarPtj(event) {
-		if (Number(event.target.value) > 100) setPtj(100);
-
-		setToggle(false);
 		event.preventDefault();
 		event.stopPropagation();
+		if (Number(event.target.value) > 100) setPtj(100);
+		setToggle(false);
 	}
 
 	const handleKeyDown = event => {

@@ -1,27 +1,18 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
-import AddIcon from '@mui/icons-material/Add';
+import { ProductoAcademicoContext } from '../context/productoAcademicoContext';
 
-import { ProductoAcademicoReducer } from './store/productoAcademico/productoAcademicoReducer';
+import { generarEvaluacion } from '../helpers/generar';
+import { types } from '../types/productoAcademicoTypes';
 
 import './ProductoAcademicoGrid.css';
 
+import AddIcon from '@mui/icons-material/Add';
+
 import ProductoAcademicoRow from './ProductoAcademicoRow';
-import { generarEvaluacion, generarProducto } from './utils/helpers/generar';
-import { ProductoAcademicoContext } from './store/productoAcademico/productoAcademicoContext';
-import { competencias } from './data/competencias';
-import { types } from './types/types';
 
 export const ProductoAcademicoGrid = () => {
-	const init = () => {
-		return [generarEvaluacion()];
-	};
-
-	const [evaluaciones, dispatch] = useReducer(
-		ProductoAcademicoReducer,
-		[],
-		init
-	);
+	const { evaluaciones, dispatch } = useContext(ProductoAcademicoContext);
 	const [totalPorcentajeEval, setTotalPorcentajeEval] = useState();
 
 	useEffect(() => {
@@ -40,8 +31,7 @@ export const ProductoAcademicoGrid = () => {
 	};
 
 	return (
-		// <ProductoAcademicoContext.Provider value={{ evaluaciones, dispatch }}>
-		<ProductoAcademicoContext.Provider value={{ dispatch, competencias }}>
+		<>
 			{evaluaciones.map((evaluacion, index) => (
 				<ProductoAcademicoRow
 					key={evaluacion.id}
@@ -62,6 +52,6 @@ export const ProductoAcademicoGrid = () => {
 			</p>
 
 			<button onClick={() => console.log(evaluaciones)}>Guardar</button>
-		</ProductoAcademicoContext.Provider>
+		</>
 	);
 };

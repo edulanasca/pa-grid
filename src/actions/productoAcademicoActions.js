@@ -1,5 +1,5 @@
-import { calcularPorcentaje } from '../utils/helpers/calcularPorcentaje';
-import { generarProducto } from '../utils/helpers/generar';
+import { calcularPorcentaje } from '../helpers/calcularPorcentaje';
+import { generarProducto } from '../helpers/generar';
 
 const addRow = state => calcularPorcentaje(state);
 

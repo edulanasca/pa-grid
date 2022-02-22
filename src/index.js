@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 
-import { ProductoAcademicoGrid } from './ProductoAcademicoGrid';
+import { ProductoAcademicoApp } from './ProductoAcademicoApp';
 
-ReactDOM.render(<ProductoAcademicoGrid />, document.getElementById('root'));
+ReactDOM.render(<ProductoAcademicoApp />, document.getElementById('root'));

@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 
+import { ProductoAcademicoContext } from '../context/productoAcademicoContext';
+
 import {
 	Accordion,
 	AccordionDetails,
@@ -13,8 +15,6 @@ import {
 	Typography
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-import { ProductoAcademicoContext } from './store/productoAcademico/productoAcademicoContext';
 
 const style = {
 	position: 'absolute',

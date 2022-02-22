@@ -1,11 +1,11 @@
-import { types } from '../../types/types';
+import { types } from '../types/productoAcademicoTypes';
 import {
 	addProdAcad,
 	addRow,
 	deleteRow,
 	rowDown,
 	rowUp
-} from '../../actions/productoAcademicoActions';
+} from '../actions/productoAcademicoActions';
 
 export const ProductoAcademicoReducer = (state = {}, action) => {
 	switch (action.type) {
