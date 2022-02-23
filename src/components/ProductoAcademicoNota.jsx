@@ -1,79 +1,94 @@
-import { useContext, useEffect, useState } from 'react';
+import {useContext, useEffect, useState} from 'react';
 
-import { ProductoAcademicoContext } from '../context/productoAcademicoContext';
+import {ProductoAcademicoContext} from '../context/productoAcademicoContext';
 
 import './ProductoAcademicoNota.css';
 
+import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton } from '@mui/material';
+import {Box, Button, IconButton, Typography} from '@mui/material';
 
-const ProductoAcademicoNota = ({ index, porcentaje, id }) => {
-	const { dispatch } = useContext(ProductoAcademicoContext);
+const ProductoAcademicoNota = ({index, porcentaje, id}) => {
+  const {dispatch} = useContext(ProductoAcademicoContext);
 
-	const [toggle, setToggle] = useState(false);
-	const [ptj, setPtj] = useState();
+  const [toggle, setToggle] = useState(false);
+  const [ptj, setPtj] = useState();
 
-	useEffect(() => {
-		setPtj(porcentaje);
-	}, [porcentaje]);
+  useEffect(() => {
+    setPtj(porcentaje);
+  }, [porcentaje]);
 
-	const handleRowUp = () => dispatch({ type: 'rowUp', payload: id });
-	const handleRowDown = () => dispatch({ type: 'rowDown', payload: id });
-	const handleDeleteRow = () => dispatch({ type: 'deleteRow', payload: id });
+  const handleRowUp = () => dispatch({type: 'rowUp', payload: id});
+  const handleRowDown = () => dispatch({type: 'rowDown', payload: id});
+  const handleDeleteRow = () => dispatch({type: 'deleteRow', payload: id});
 
-	function comprobarPtj(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		if (Number(event.target.value) > 100) setPtj(100);
-		setToggle(false);
-	}
+  function comprobarPtj(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (Number(event.target.value) > 100) setPtj(100);
+    setToggle(false);
+  }
 
-	const handleKeyDown = event => {
-		if (event.key === 'Enter' || event.key === 'Escape')
-			comprobarPtj(event);
-	};
+  const handleKeyDown = event => {
+    if (event.key === 'Enter' || event.key === 'Escape')
+      comprobarPtj(event);
+  };
 
-	const handleBlur = event => comprobarPtj(event);
+  const handleBlur = event => comprobarPtj(event);
 
-	return (
-		<div className="card__nota">
-			<IconButton color="error" onClick={handleDeleteRow}>
-				<CloseIcon />
-			</IconButton>
-			<p>Nota {index + 1}</p>
-			<svg
-				onClick={handleRowUp}
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-			>
-				<path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
-			</svg>
-			{toggle ? (
-				<div className="toggle__porcentaje">
-					<input
-						autoFocus={true}
-						type="text"
-						value={ptj}
-						onBlur={handleBlur}
-						onChange={event => setPtj(Number(event.target.value))}
-						onKeyDown={handleKeyDown}
-					/>
-					<p> %</p>
-				</div>
-			) : (
-				<p onDoubleClick={() => setToggle(true)}>
-					{ptj < 0 ? 0 : ptj} %
-				</p>
-			)}
-			<svg
-				onClick={handleRowDown}
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-			>
-				<path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-			</svg>
-		</div>
-	);
+  return (
+    <Box sx={{
+      height: '170px',
+      bgcolor: 'white',
+      borderRadius: 5,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
+      p: 2,
+    }}>
+      <Button variant="outlined"
+              color="error"
+              onClick={handleDeleteRow}
+              sx={{
+                bgcolor: '#FFDED3',
+                minWidth: '0px',
+                position : 'absolute',
+                p:0.1,
+                top: '5px',
+                left: '75px'}
+      }>
+        <CloseIcon fontSize="small"/>
+      </Button>
+      <Typography>
+        Nota {index + 1}
+      </Typography>
+      <IconButton onClick={handleRowUp} sx={{p: 0.5}}>
+        <ArrowDropUpRoundedIcon fontSize="large"/>
+      </IconButton>
+      {toggle ? (
+        <div className="toggle__porcentaje">
+          <input
+            autoFocus={true}
+            type="text"
+            value={ptj}
+            onBlur={handleBlur}
+            onChange={event => setPtj(Number(event.target.value))}
+            onKeyDown={handleKeyDown}
+          />
+          <p> %</p>
+        </div>
+      ) : (
+        <Typography onDoubleClick={() => setToggle(true)}>
+          {ptj < 0 ? 0 : ptj}%
+        </Typography>
+      )}
+      <IconButton onClick={handleRowDown} sx={{p: 0.5}}>
+        <ArrowDropDownRoundedIcon fontSize="large"/>
+      </IconButton>
+    </Box>
+  );
 };
 
 export default ProductoAcademicoNota;

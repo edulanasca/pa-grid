@@ -8,15 +8,6 @@
     position: relative;
 }
 
-.card__nota p {
-    margin: 10px;
-}
-
-.card__nota svg {
-    width: 20px;
-    height: 20px;
-}
-
 .toggle__porcentaje {
     display: flex;
     justify-content: center;
